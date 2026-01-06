@@ -92,6 +92,13 @@ function handleError(error) {
     };
   }
 
+  if (err.response && [403, 999].includes(err.response.status)) {
+    return res.status(403).json({
+      error: 'This website blocks automated SEO analysis.'
+    });
+  }
+  
+
   // Default server error (500)
   return {
     status: 500,
