@@ -78,81 +78,6 @@ The frontend will start on port 5173 by default (Vite's default port).
 
 3. Open your browser and navigate to `http://localhost:5173` to use the application.
 
-## API Usage
-
-### Endpoint
-
-```
-POST /api/analyze
-```
-
-### Request
-
-**Headers:**
-
-```
-Content-Type: application/json
-```
-
-**Body:**
-
-```json
-{
-  "url": "https://example.com"
-}
-```
-
-### Example Request
-
-```bash
-curl -X POST http://localhost:3000/api/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"url": "https://example.com"}'
-```
-
-### Response Format
-
-**Success Response (200 OK):**
-
-```json
-{
-  "url": "https://example.com",
-  "seoScore": 80,
-  "checks": [
-    "Page has a title tag",
-    "Page has a meta description",
-    "Page has at least one H1 tag",
-    "All images have alt text",
-    "Page does not use HTTPS"
-  ],
-  "issues": ["Page does not use HTTPS"],
-  "passedChecks": [
-    "Page has a title tag",
-    "Page has a meta description",
-    "Page has at least one H1 tag",
-    "All images have alt text"
-  ]
-}
-```
-
-**Error Response (400 Bad Request):**
-
-```json
-{
-  "error": "Invalid Request",
-  "message": "URL is required in request body"
-}
-```
-
-**Error Response (408 Request Timeout):**
-
-```json
-{
-  "error": "Request Timeout",
-  "message": "The request timed out while fetching the URL"
-}
-```
-
 ## Scoring Criteria
 
 The SEO score is calculated based on five criteria, each worth 20 points:
@@ -199,39 +124,6 @@ seo-analyzer/
 ├── package.json                  # Backend dependencies
 └── README.md
 ```
-
-## Frontend Usage
-
-The React frontend provides a user-friendly interface for SEO analysis:
-
-1. Enter a website URL in the input field
-2. Click the "Analyze" button
-3. View the SEO score and detailed analysis results
-4. Review issues and passed checks
-
-The frontend communicates with the backend API at `http://localhost:3000/api/analyze`.
-
-## Health Check
-
-```
-GET /
-```
-
-Returns server status:
-
-```json
-{
-  "status": "ok"
-}
-```
-
-## Limitations
-
-- Maximum page size: 10MB
-- Request timeout: 10 seconds (default)
-- Maximum redirects: 5
-- Does not execute JavaScript (static HTML analysis only)
-- Does not analyze content quality or keyword optimization
 
 ## Disclaimer
 
